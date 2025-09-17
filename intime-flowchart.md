@@ -42,7 +42,7 @@ kernal_config: []
     G --> H["Message Broker 3"]
 
     subgraph H["Message Broker 3"]
-        I["{<br>txlog_id: xxx,<br>pipeline_config: {<br>  id: xxx,<br>  kernal_config: []<br>},<br>aggregate_result: []<br>}"]
+        I["{<br>txlog_id: xxx,<br>pipeline_config: {<br>id: xxx,<br>pre_func_name: xxx,<br>agg_config: {},<br>kernal_config: []<br>},<br>aggregate_result: []<br>}"]
     end
 
     H --> K["Kernel Function"]
