@@ -11,7 +11,8 @@ flowchart LR
         D0["Get hisdata by txlog_id"]
         D1["Get pipeline config from DB by $pre_func_name"]
         D2["Execute prepare function"]
-        D0 --> D1 --> D2
+        D3["Insert into $pre_func table"]
+        D0 --> D1 --> D2 --> D3["Insert into $pre_func table with $txlog_id"]
     end
 
     D --> E["Message Broker 2"]
@@ -41,7 +42,7 @@ kernal_config: []
     G --> H["Message Broker 3"]
 
     subgraph H["Message Broker 3"]
-        I["{<br>txlog_id: xxx,<br>pipeline_config: {<br>id: xxx,<br>pre_func_name: xxx,<br>agg_config: {},<br>kernal_config: []<br>},<br>aggregate_result: []<br>}"]
+        I["{<br>txlog_id: xxx,<br>pipeline_config: {<br>  id: xxx,<br>  kernal_config: []<br>},<br>aggregate_result: []<br>}"]
     end
 
     H --> K["Kernel Function"]
@@ -58,6 +59,7 @@ kernal_config: []
     style D0 fill:#ffffff,stroke:#000,stroke-width:1px
     style D1 fill:#ffffff,stroke:#000,stroke-width:1px
     style D2 fill:#ffffff,stroke:#000,stroke-width:1px
+    style D3 fill:#ffffff,stroke:#000,stroke-width:1px
 
     style G fill:#e6f2ff,stroke:#3399ff,stroke-width:2px
     style G1 fill:#ffffff,stroke:#000,stroke-width:1px
